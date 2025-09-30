@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Конструктор форм</title>
+    <style>
+        :root {
+            --primary: #3498db;
+            --secondary: #2ecc71;
+            --dark: #2c3e50;
+            --light: #ecf0f1;
+            --danger: #e74c3c;
+            --warning: #f39c12;
+            --gray: #95a5a6;
+            --border-radius: 8px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: white;
+            padding: 2rem 0;
+            border-radius: var(--border-radius);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .section {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            color: var(--primary);
+            border-bottom: 2px solid var(--light);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        h3 {
+            color: var(--dark);
+            margin: 1.5rem 0 0.5rem;
+        }
+
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .property-card {
+            background: var(--light);
+            border-radius: var(--border-radius);
+            padding: 1rem;
+            border-left: 4px solid var(--primary);
+        }
+
+        .property-name {
+            font-weight: bold;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .property-desc {
+            color: #555;
+            font-size: 0.9rem;
+        }
+
+        .component-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .component-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            border-top: 4px solid var(--secondary);
+            border-right: 1px solid var(--light);
+            border-left: 1px solid var(--light);
+            border-bottom: 1px solid var(--light);
+        }
+
+        .component-name {
+            font-weight: bold;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .component-desc {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.3rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .tag-secondary {
+            background: var(--secondary);
+        }
+
+        .tag-warning {
+            background: var(--warning);
+        }
+
+        .tag-danger {
+            background: var(--danger);
+        }
+
+        .tag-gray {
+            background: var(--gray);
+        }
+
+        .component-details {
+            display: none;
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: var(--border-radius);
+            border-left: 4px solid var(--secondary);
+        }
+
+        .active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>Компоненты формы</h1>
+        <p class="subtitle">Полная документация по всем компонентам системы форм</p>
+    </header>
+
+    <section class="section">
+        <h2>Общие свойства всех компонентов</h2>
+        <p>Каждый компонент формы имеет следующие общие свойства:</p>
+
+        <div class="properties-grid">
+            <div class="property-card">
+                <div class="property-name">Техническое имя</div>
+                <div class="property-desc">Уникальный идентификатор компонента на форме</div>
+            </div>
+
+            <div class="property-card">
+                <div class="property-name">Название поля</div>
+                <div class="property-desc">Человекочитаемое название поля</div>
+            </div>
+
+            <div class="property-card">
+                <div class="property-name">Класс на главный блок поля</div>
+                <div class="property-desc">CSS-класс для стилизации контейнера поля</div>
+            </div>
+
+            <div class="property-card">
+                <div class="property-name">Скрытое поле</div>
+                <div class="property-desc">Определяет, должно ли поле быть скрыто</div>
+            </div>
+
+            <div class="property-card">
+                <div class="property-name">Неактивное поле</div>
+                <div class="property-desc">Определяет, должно ли поле быть недоступно для редактирования</div>
+            </div>
+
+            <div class="property-card">
+                <div class="property-name">Плейсхолдер</div>
+                <div class="property-desc">Текст-подсказка внутри поля ввода</div>
+            </div>
+
+            <div class="property-card">
+                <div class="property-name">Действия</div>
+                <div class="property-desc">Обработчики событий для поля</div>
+            </div>
+
+            <div class="property-card">
+                <div class="property-name">Тултип</div>
+                <div class="property-desc">Всплывающая подсказка при наведении на название поля</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>Компоненты формы</h2>
+        <p>Выберите компонент для просмотра подробной информации:</p>
+
+        <div class="component-list">
+            <div class="component-card">
+                <div class="component-name">Чекбокс</div>
+                <div class="component-desc">Поле с флажком для выбора опции</div>
+                <div class="tag">Disabled</div>
+                <div class="tag tag-secondary">Label</div>
+                <div class="tag tag-warning">Required</div>
+            </div>
+
+            <div class="component-card">
+                <div class="component-name">Текстовое поле</div>
+                <div class="component-desc">Однострочное поле для ввода текста</div>
+                <div class="tag">Disabled</div>
+                <div class="tag tag-secondary">Placeholder</div>
+                <div class="tag tag-warning">Label</div>
+                <div class="tag tag-danger">Icon</div>
+            </div>
+
+            <div class="component-card">
+                <div class="component-name">Пароль</div>
+                <div class="component-desc">Поле для ввода пароля с маскировкой символов</div>
+                <div class="tag">Disabled</div>
+                <div class="tag tag-secondary">Placeholder</div>
+                <div class="tag tag-warning">Label</div>
+            </div>
+
+            <div class="component-card">
+                <div class="component-name">Загрузчик файлов</div>
+                <div class="component-desc">Компонент для загрузки файлов разных типов</div>
+                <div class="tag">Base64</div>
+                <div class="tag tag-secondary">Minio</div>
+                <div class="tag tag-warning">FormData</div>
+            </div>
+
+            <div class="component-card">
+                <div class="component-name">Селект</div>
+                <div class="component-desc">Выпадающий список для выбора одного значения</div>
+                <div class="tag">Disabled</div>
+                <div class="tag tag-secondary">Placeholder</div>
+                <div class="tag tag-warning">Label</div>
+                <div class="tag tag-danger">API</div>
+            </div>
+
+            <div class="component-card">
+                <div class="component-name">Мультиселект</div>
+                <div class="component-desc">Выпадающий список для выбора нескольких значений</div>
+                <div class="tag">Disabled</div>
+                <div class="tag tag-secondary">Placeholder</div>
+                <div class="tag tag-warning">Label</div>
+                <div class="tag tag-danger">API</div>
+            </div>
+
+            <div class="component-card">
+                <div class="component-name">Календарь</div>
+                <div class="component-desc">Поле для выбора даты</div>
+                <div class="tag">Disabled</div>
+                <div class="tag tag-secondary">Placeholder</div>
+                <div class="tag tag-warning">Label</div>
+            </div>
+
+            <div class="component-card">
+                <div class="component-name">Числовое поле</div>
+                <div class="component-desc">Поле для ввода числовых значений</div>
+                <div class="tag tag-secondary">Placeholder</div>
+                <div class="tag tag-warning">Label</div>
+                <div class="tag tag-danger">ActionHandler</div>
+            </div>
+
+            <div class="component-card">
+                <div class="component-name">Слайдер</div>
+                <div class="component-desc">Ползунок для выбора значения из диапазона</div>
+                <div class="tag tag-secondary">Placeholder</div>
+                <div class="tag tag-warning">Label</div>
+                <div class="tag tag-danger">ActionHandler</div>
+            </div>
+
+            <div class="component-card">
+                <div class="component-name">Переключатель</div>
+                <div class="component-desc">Переключатель между двумя состояниями</div>
+                <div class="tag">Disabled</div>
+                <div class="tag tag-warning">Label</div>
+                <div class="tag tag-danger">ActionHandler</div>
+                <div class="tag tag-gray">API</div>
+            </div>
+
+            <div class="component-card">
+                <div class="component-name">Большое поле</div>
+                <div class="component-desc">Многострочное текстовое поле</div>
+                <div class="tag">Disabled</div>
+                <div class="tag tag-secondary">Placeholder</div>
+                <div class="tag tag-warning">Counter</div>
+            </div>
+
+            <div class="component-card">
+                <div class="component-name">Вложенная форма</div>
+                <div class="component-desc">Форма внутри другой формы</div>
+                <div class="tag tag-gray">Только общие свойства</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>Главный компонент формы</h2>
+        <p>Основной компонент, который управляет всей формой и ее дочерними элементами.</p>
+
+        <div class="properties-grid">
+            <div class="property-card">
+                <div class="property-name">Сервис фильтрации дочерних форм</div>
+                <div class="property-desc">Фильтрация и управление вложенными формами</div>
+            </div>
+
+            <div class="property-card">
+                <div class="property-name">Сервис для скрытия/вывода по условию полей</div>
+                <div class="property-desc">Условное отображение полей формы</div>
+            </div>
+
+            <div class="property-card">
+                <div class="property-name">Сервис для замены роутов в АПИ путях</div>
+                <div class="property-desc">Динамическая подстановка маршрутов API</div>
+            </div>
+
+            <div class="property-card">
+                <div class="property-name">Отправка формы</div>
+                <div class="property-desc">Функционал отправки данных формы</div>
+            </div>
+
+            <div class="property-card">
+                <div class="property-name">Проставление информации в форму</div>
+                <div class="property-desc">Заполнение формы данными</div>
+            </div>
+
+            <div class="property-card">
+                <div class="property-name">Проставление информации в дочерние формы</div>
+                <div class="property-desc">Заполнение вложенных форм данными</div>
+            </div>
+
+            <div class="property-card">
+                <div class="property-name">Название формы</div>
+                <div class="property-desc">Отображение названия формы сверху</div>
+            </div>
+
+            <div class="property-card">
+                <div class="property-name">Обработка ActionHandler</div>
+                <div class="property-desc">Обработка пользовательских действий</div>
+            </div>
+
+            <div class="property-card">
+                <div class="property-name">Загрузка формы через АПИ</div>
+                <div class="property-desc">Получение конфигурации формы из API</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>Вспомогательные компоненты</h2>
+
+        <h3>Компонент группы</h3>
+        <p>Отображение компонентов в группе с общей логикой и стилизацией.</p>
+
+        <h3>Компоненты кнопки</h3>
+        <p>Кнопки для выполнения действий, включая отправку формы.</p>
+
+        <h3>Компонент полей</h3>
+        <p>Контейнер для отображения всех полей в форме.</p>
+    </section>
+</div>
+</body>
+</html>
